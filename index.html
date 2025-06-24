@@ -8,22 +8,23 @@
     <style>
 
         body{
-            background-color: rgb(2, 18, 57);
+            background-color: rgb(5, 37, 118);
             color: azure;
             font-family: Arial, Helvetica, sans-serif;
             margin: 20px;
-
+         
         }
 
         .js-para {
             font-weight: 700;
+            padding:  7px;
 
 
         }
 
         h1 {
             background-color: rgb(86, 159, 255);
-            padding: 7px;
+            padding: 20px;
             border-radius: 20px;
             color: rgb(8, 36, 76);
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -33,24 +34,27 @@
         h2 {
             background-color: rgb(15, 71, 175);
             border-radius: 10px;
-            padding: 7px 20px;
+            padding: 2px 20px;
             color: aqua;
             cursor: cell;
         }
 
-        .js-clear {
-            background-color: rgb(4, 4, 4);
-            color: white;
+        .js-clear ,
+        .css-autoplay{
+            background-color: rgb(29, 113, 111);
+            color: azure;
             padding: 10px 20px;
             font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-weight: bold;
             border-radius: 20px;
-            margin: 20px;
+            margin: 5px;
             font-size: medium;
             cursor: pointer;
 
 
         }
+
+        
 
         footer {
             background-color: rgb(99, 206, 233);
@@ -72,10 +76,10 @@
 
         .emg-button {
 
-            padding: 5px;
+            padding: 9px;
             border-color: azure;
             border-radius: 15px;
-            margin: 2px;
+            margin: 5px;
             cursor: pointer;
         }
         .js-para {
@@ -84,7 +88,7 @@
             background-color: rgb(68, 134, 
             185);
             border-radius: 10px;
-            
+           
         }
 
     </style>
@@ -92,16 +96,18 @@
 </head>
 <body>
 
-    <h1> Rock Paper Scissors</h1>
-    <h2> 
-        CHOOSE YOUR MOVE WISELY ... 😏😏
+    <h1> ROCK PAPER SIZER</h1>
+    <h2> A GAME IN JAVA.
+        <br>
+        <br>
+        CHOOSE YOUR MOVE...WISELY
     </h2>
 
     <button onclick=" 
       playgame('rock');
 
     " class="emg-button" >
-    <img src="rock-emoji.png" class="emg-image">
+    <img src="images/rock-emoji.png" class="emg-image">
     </button>
 
 
@@ -109,7 +115,7 @@
         playgame('paper');
      
     " class="emg-button">
-    <img src="paper-emoji.png" class="emg-image" >
+    <img src="images/paper-emoji.png" class="emg-image" >
     </button>
 
 
@@ -117,7 +123,7 @@
         playgame('sizer');
 
     " class="emg-button">
-    <img src="sizer-emoji.png" class="emg-image">
+    <img src="images/sizer-emoji.png" class="emg-image">
     </button>
     
     <br>
@@ -133,6 +139,10 @@
         .innerHTML = `WINS: 0 , LOOSES: 0 , TIES: 0`;
     
     " class="js-clear">CLEAR-RESULT</button>
+
+    <button onclick="
+        autoplay();
+    " class="css-autoplay">AUTO (START/STOP)</button>
 
    <p class="js-para"></p>
 
@@ -157,6 +167,25 @@
             looses: 0,
             ties: 0
         }
+
+        let isautoplaying = false;
+        let setconst = '';
+
+        function autoplay() {
+            if (!isautoplaying){
+
+                setconst = setInterval(function () {
+                                    const autoact1 = pickforcomputer();
+                                    playgame(autoact1); 
+                                } , 1000);
+                isautoplaying = true;
+            }    
+            else{
+                clearInterval(setconst);
+                isautoplaying = false;
+            }    
+        }
+       
         
        
     
@@ -206,16 +235,16 @@
             
 
             document.querySelector('.js-para')
-                .innerHTML = `Computer Move = <img src ="${compmove}-emoji.png" class = "emg-image">
+                .innerHTML = `Computer Move = <img src ="images/${compmove}-emoji.png" class = "emg-image">
 
                 <br>
 
-                Your Move = <img src = "${playermove}-emoji.png" class = "emg-image">
+                Your Move = <img src = "images/${playermove}-emoji.png" class = "emg-image">
 
                 <br>
                 <br>
 
-                Result = <img src = "${result}-emoji.png" class = "emg-image">
+                Result = <img src = "images/${result}-emoji.png" class = "emg-image">
 
                 <br>
                 <br>
@@ -256,6 +285,7 @@
 
         Made By: Ram Bhagat Soni
         <br>
+         
         <br>
         <br>
         ALL RIGHTS RESERVED® 
